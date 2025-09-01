@@ -1,0 +1,212 @@
+@charset "utf-8";
+
+html {
+  font-family: 'Pretendard Variable', 'Montserrat', sans-serif;
+  color: #333;
+}
+
+/* ====================================  */
+/* ===공통레이아웃===========================  */
+/* ====================================  */
+body {
+  counter-reset: one;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+  padding: 120px 20px 0 20px;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 40px;
+  color: #404040;
+  padding-top: 160px;
+  position: relative;
+}
+
+h2:not(.tit)::before {
+  counter-increment: one;
+  content: "0" counter(one);
+  font-size: 230px;
+  color: #eee;
+  letter-spacing: 0;
+  position: absolute;
+  top: 20px;
+  left: -200px;
+  z-index: -1;
+}
+
+
+/* ====================================  */
+/* ===header===========================  */
+/* ====================================  */
+header {
+  width: 100%;
+  height: 120px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  justify-content: center;
+}
+
+header:after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-color: #ffffff77;
+  backdrop-filter: blur(10px);
+  z-index: -1;
+  left: 0;
+  top: 0;
+}
+
+header h1 {
+  padding: 0 5rem;
+  box-sizing: border-box;
+}
+
+header h1 a {
+  display: block;
+  /* height: 100%; */
+}
+
+header h1 a img {
+  width: 20%;
+}
+
+header nav ul {
+  display: flex;
+  width: 50%;
+  align-items: flex-end;
+}
+
+header nav ul li {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  padding-right: 3.5rem;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  position: relative;
+  user-select: none;
+}
+
+header nav ul li a.active:after {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  transform-origin: center;
+  background: #ff7d7d;
+  position: absolute;
+  top: -40px;
+  left: 40%;
+  border-radius: 100%;
+  animation: jump 1s infinite;
+}
+
+@keyframes jump {
+  0% {
+    bottom: 200px;
+    transform: scale3d(1, 1, 1);
+    border-radius: 100%;
+    animation-timing-function: ease-in;
+  }
+
+  30%,
+  48% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  55% {
+    transform: scale3d(1.3, 0.6, 1);
+    top: -20px;
+  }
+
+  60%,
+  80% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+    border-radius: 100%;
+    bottom: 34px;
+  }
+}
+
+/* ====================================  */
+/* ===section===========================  */
+/* ====================================  */
+section {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  height: 100vh;
+}
+
+section .container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  height: 100%;
+}
+
+section .container .tit {
+  font-size: 130px;
+  font-weight: bold;
+  color: #222;
+  font-family: 'Montserrat', sans-serif;
+}
+
+section .container p {
+  font-size: 26px;
+  line-height: 2rem;
+  letter-spacing: -1.2px;
+  color: #555;
+  padding: 40px 0 0 10px;
+}
+
+#circle {
+  position: absolute;
+  right: -20%;
+  bottom: 10%;
+  width: 340px;
+  height: 340px;
+  overflow: hidden;
+}
+
+#circle svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  animation: rotate 10s infinite linear;
+  transform-origin: 50% 50%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg)
+  }
+
+  to {
+    transform: rotate(0deg)
+  }
+}
+
+/* ====================================  */
+/* ===#section2===========================  */
+/* ====================================  */
