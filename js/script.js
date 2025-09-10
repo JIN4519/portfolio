@@ -1,29 +1,523 @@
-// nav 하위 a의 href 값 취득
-const links = gsap.utils.toArray('nav ul li a');
-links.forEach((link) => {
-  let ele = document.querySelector(link.getAttribute('href'));
-  let linkST = ScrollTrigger.create({
-    trigger: ele,
-    start: 'top top',
-  })
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function() {
+    initNavigation();
+    initTestimonialsSlider();
+    initFAQAccordion();
+    initSmoothScrolling();
+    initScrollEffects();
+    initGSAPAnimations();
+});
 
-  ScrollTrigger.create({
-    trigger: ele,//이벤트 감지대상(section#section0~4)
-    start: 'top center', //스크롤이 섹션 상단에서 50% 지점도달시 시작
-    end: 'bottom center',
-    onToggle: (self) => setActive(link), //스크롤 영역에 도달시 활성화 벗어나면 비활성화 하는 옵션 , 함수로 작성
-  })
+// Navigation functionality
+function initNavigation() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
 
-  // nav의 부드러운 스크롤
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    setActive(link)
-    gsap.to(window, { duration: 1, scrollTo: linkST.start, overwrite: 'auto' })
-  })
+    // Toggle mobile menu
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    }
 
-})
+    // Close menu when clicking on links
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
 
-function setActive(link) {
-  links.forEach((el) => { el.classList.remove('active'); })
-  link.classList.add('active');
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = 'none';
+        }
+    });
 }
+
+// Testimonials slider
+function initTestimonialsSlider() {
+    const testimonials = document.querySelectorAll('.testimonial-item');
+    const prevBtn = document.querySelector('.nav-btn.prev');
+    const nextBtn = document.querySelector('.nav-btn.next');
+    let currentTestimonial = 0;
+
+    if (!testimonials.length) return;
+
+    function showTestimonial(index) {
+        testimonials.forEach((testimonial, i) => {
+            testimonial.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextTestimonial() {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    }
+
+    function prevTestimonial() {
+        currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', nextTestimonial);
+    if (prevBtn) prevBtn.addEventListener('click', prevTestimonial);
+
+    // Auto-play testimonials
+    setInterval(nextTestimonial, 5000);
+}
+
+// FAQ Accordion
+function initFAQAccordion() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const isActive = faqItem.classList.contains('active');
+
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        });
+    });
+}
+
+// Smooth scrolling for navigation links
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerOffset = 100;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Scroll effects
+function initScrollEffects() {
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('.hero-image');
+        if (parallax) {
+            const speed = scrolled * 0.2;
+            parallax.style.transform = `translateY(${speed}px)`;
+        }
+    });
+
+    // Fade in animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for fade-in animation
+    document.querySelectorAll('.service-item, .portfolio-item, .award-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// GSAP Animations
+function initGSAPAnimations() {
+    if (typeof gsap === 'undefined') {
+        console.warn('GSAP library not loaded');
+        return;
+    }
+
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero title animation
+    gsap.fromTo('.hero-title', 
+        {
+            opacity: 0,
+            y: 100,
+            scale: 0.8
+        }, 
+        {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            delay: 0.3
+        }
+    );
+
+    // Hero subtitle animation
+    gsap.fromTo('.hero-subtitle', 
+        {
+            opacity: 0,
+            x: -50
+        }, 
+        {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: 'power2.out',
+            delay: 0.8
+        }
+    );
+
+    // Hero image animation
+    gsap.fromTo('.hero-image', 
+        {
+            opacity: 0,
+            scale: 0.9,
+            y: 30
+        }, 
+        {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            delay: 1
+        }
+    );
+
+    // Social icons animation
+    gsap.fromTo('.social-icon', 
+        {
+            opacity: 0,
+            x: 50
+        }, 
+        {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            delay: 1.2,
+            stagger: 0.1
+        }
+    );
+
+    // Scrolling banner continuous animation
+    gsap.to('.banner-content', {
+        xPercent: -100,
+        repeat: -1,
+        duration: 30,
+        ease: 'none'
+    });
+
+    // Portfolio banner animation (opposite direction)
+    gsap.to('.portfolio-banner .banner-content', {
+        xPercent: 100,
+        repeat: -1,
+        duration: 25,
+        ease: 'none'
+    });
+
+    // Section titles animation on scroll
+    gsap.utils.toArray('section h2').forEach((title) => {
+        gsap.fromTo(title, 
+            {
+                opacity: 0,
+                y: 50
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: title,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                }
+            }
+        );
+    });
+
+    // Capabilities grid animation
+    gsap.fromTo('.capability-item', 
+        {
+            opacity: 0,
+            y: 30,
+            scale: 0.9
+        },
+        {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.capabilities-grid',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        }
+    );
+
+    // Services grid animation
+    gsap.fromTo('.service-item', 
+        {
+            opacity: 0,
+            y: 50,
+            rotationY: 15
+        },
+        {
+            opacity: 1,
+            y: 0,
+            rotationY: 0,
+            duration: 1,
+            ease: 'power3.out',
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.services-grid',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        }
+    );
+
+    // Portfolio items animation
+    gsap.fromTo('.portfolio-item', 
+        {
+            opacity: 0,
+            y: 60,
+            scale: 0.9
+        },
+        {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: 'power3.out',
+            stagger: 0.15,
+            scrollTrigger: {
+                trigger: '.portfolio-grid',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        }
+    );
+
+    // Stats counter animation
+    gsap.utils.toArray('.stat-number').forEach((stat) => {
+        const endValue = parseInt(stat.textContent);
+        gsap.fromTo(stat, 
+            { 
+                innerText: 0 
+            },
+            {
+                innerText: endValue,
+                duration: 2,
+                ease: 'power2.out',
+                snap: { innerText: 1 },
+                scrollTrigger: {
+                    trigger: stat,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                onUpdate: function() {
+                    stat.textContent = Math.ceil(this.targets()[0].innerText) + '+';
+                }
+            }
+        );
+    });
+
+    // Awards timeline animation
+    gsap.fromTo('.award-item', 
+        {
+            opacity: 0,
+            x: -50
+        },
+        {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.awards-timeline',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        }
+    );
+
+    // Testimonials fade animation
+    gsap.fromTo('.testimonial-item.active', 
+        {
+            opacity: 0,
+            y: 30
+        },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out'
+        }
+    );
+
+    // FAQ items animation
+    gsap.fromTo('.faq-item', 
+        {
+            opacity: 0,
+            y: 30
+        },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: '.faq-list',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        }
+    );
+
+    // Contact section animation
+    gsap.fromTo('.contact h2, .contact p, .contact-btn', 
+        {
+            opacity: 0,
+            y: 30
+        },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.contact',
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
+            }
+        }
+    );
+}
+
+// Utility functions
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Mobile menu styles (add to CSS if not present)
+const mobileMenuStyles = `
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 50px;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
+        margin: 20px 0;
+    }
+    
+    .nav-menu li a {
+        font-size: 1.2rem;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+`;
+
+// Add mobile menu styles if not present
+if (!document.querySelector('#mobile-menu-styles')) {
+    const style = document.createElement('style');
+    style.id = 'mobile-menu-styles';
+    style.textContent = mobileMenuStyles;
+    document.head.appendChild(style);
+}
+
+// Performance optimization
+window.addEventListener('load', () => {
+    // Lazy load images
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+});
