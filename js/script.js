@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initScrollEffects();
     initGSAPAnimations();
+    initPortfolioModals();
 });
 
 // Navigation functionality
@@ -34,10 +35,10 @@ function initNavigation() {
     window.addEventListener('scroll', () => {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.background = 'rgba(255, 255, 255, 0.1)';
             navbar.style.boxShadow = 'none';
         }
     });
@@ -521,3 +522,157 @@ window.addEventListener('load', () => {
 
     images.forEach(img => imageObserver.observe(img));
 });
+
+// Portfolio Modal functionality
+function initPortfolioModals() {
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalBody = document.querySelector('.modal-body');
+    const modalClose = document.querySelector('.modal-close');
+    const portfolioButtons = document.querySelectorAll('.portfolio-tag-btn');
+
+    // Modal content data
+    const modalContent = {
+        'nextvion-plan': {
+            title: 'NEXTVION 기획서 / 개인 프로젝트',
+            content: `
+                <h2>NEXTVION 기획서 / 개인 프로젝트</h2>
+                <img src="/images/vion_p1.png" alt="NEXTVION 기획서" style="width:100%; height:auto;" />
+                <div class="modal-separator"></div>
+                <p>제작기간 : 4주</p>
+                <p>기술스택 : Figma, Illustrator, Photoshop, HTML, CSS, JavaScript, Github</p>
+            `
+        },
+        'mn-team': {
+            title: '멍냥상회 / 팀 프로젝트',
+            content: `
+                <h2>멍냥상회 / 팀 프로젝트</h2>
+                <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/slides/5aW6VWNa80SHdNHufutwTu/%ED%8C%80-%EB%AC%B4%ED%95%9C%EB%8F%84%EC%A0%84-%ED%94%84%EB%A0%88%EC%A0%A0%ED%85%8C%EC%9D%B4%EC%85%98--%EB%B3%B5%EC%82%AC-?node-id=38-771&embed-host=share" allowfullscreen></iframe>
+                <div class="modal-separator"></div>
+                <p>제작기간 : 4주</p>
+                <p>기여도 : 15% </p>
+                <p>역할 : 팀원들이 취합한 로고 디자인 제작 및 UI/UX 디자인</p>
+                <p>기술스택 : Figma, Illustrator, Photoshop, After Effects, Premiere Pro, Canva, Capcut</p>
+            `
+        },
+        'mn-team1': {
+            title: '멍냥상회 구현 / 팀 프로젝트',
+            content: `
+                <h2>멍냥상회 피그마 구현</h2>
+                <div class="media-frame">
+                    <iframe style="border: 0; width:100%; height:450px;" src="https://embed.figma.com/proto/zoeFkosJz3FdOtKf57VzKW/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%A0%9C%EC%9E%91?page-id=135%3A8600&node-id=135-9203&viewport=-76%2C123%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=135%3A9203&embed-host=share" allowfullscreen></iframe>
+                </div>
+
+                <div class="modal-separator"></div>
+
+                <h2>멍냥상회 AI를 이용한 영상</h2>
+                <div class="media-frame">
+                    <video controls>
+                        <source src="/images/mn_movie.mp4" type="video/mp4">
+                        브라우저가 동영상을 지원하지 않습니다.
+                    </video>
+                </div>
+
+            `
+        },
+        'aivory-ux': {
+            title: '아이보리 UX/UI Design',
+            content: `
+                <h2>아이보리 기획서 / 개인 프로젝트</h2>
+                <img src="/images/aivory_p2.png" alt="아이보리 기획서" style="width:100%; height:auto;" />
+                <div class="modal-separator"></div>
+                <p>개인 프로젝트</p>
+                <p>제작기간 : 1주</p>
+                <p>기술스택 : Figma, Illustrator, Photoshop</p>
+            `
+        },
+        'aivory-design': {
+            title: '아이보리 피그마 구현',
+            content: `
+                <h2>아이보리 피그마 구현</h2>
+                <div class="media-frame">
+                    <iframe style="border: 0; width:100%; height:950px;" src="https://embed.figma.com/proto/59YPP7a7K5T0I7X1KBx1px/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B82--%EC%95%84%EC%9D%B4%EB%B3%B4%EB%A6%AC-?page-id=0%3A1&node-id=1-1094&viewport=-30%2C1%2C0.3&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A1071&embed-host=share" allowfullscreen></iframe>
+                </div>
+            `
+        },
+        'since-ux': {
+            title: 'SINCE EIGHTEEN UX/UI Design',
+            content: `
+                <h2>SINCE EIGHTEEN 기획서</h2>
+                <img src="/images/since_p1.png" alt="since 기획서" style="width:100%; height:auto;" />
+                <div class="modal-separator"></div>
+                <p>개인 프로젝트</p>
+                <p>제작기간 : 2주</p>
+                <p>기술스택 : Figma, Illustrator, Photoshop, After Effects, Premiere Pro</p>
+            `
+        },
+        'since-design': {
+            title: 'SINCE EIGHTEEN Design System',
+            content: `
+                <h2>SINCE EIGHTEEN 피그마 구현</h2>
+                <div class="media-frame">
+                    <iframe style="border: 0; width:100%; height:950px;" src="https://embed.figma.com/proto/KsstKbzPZEtUfoLdWQQQMM/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B83_Since-18?page-id=0%3A1&node-id=1-28&viewport=146%2C-495%2C0.44&scaling=min-zoom&content-scaling=fixed&embed-host=share" allowfullscreen></iframe>
+                </div>
+                <p>확대해서 확인해보세요.</p>
+                <p>재생버튼을 누르면 동영상이 재생됩니다.</p>
+            `
+        },
+        'morgo-ux': {
+            title: '모르고 UX/UI Design',
+            content: `
+                <img src="/images/morgo_p1.png" alt="모르고 기획서" style="width:100%; height:auto;" />
+                    <div class="modal-separator"></div>
+                    <p>개인 프로젝트</p>
+                    <p>제작기간 : 1주</p>
+                    <p>기술스택 : PPT참고</p>
+                `
+
+        },
+        'aivorypersonal-ux': {
+            title: 'aivory personal',
+            content: `
+                <img src="/images/aivory_p3.png" alt="아이보리 기획서" style="width:100%; height:auto;" />
+                <div class="modal-separator"></div>
+                <p>개인 프로젝트</p>
+                <p>제작기간 : 1주</p>
+                <p>기술스택 : PPT참고</p>        
+            `
+        }
+        
+    };
+
+    // Open modal
+    portfolioButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const modalId = button.getAttribute('data-modal');
+            const content = modalContent[modalId];
+            
+            if (content) {
+                modalBody.innerHTML = content.content;
+                modalOverlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Close modal
+    function closeModal() {
+        modalOverlay.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('show')) {
+            closeModal();
+        }
+    });
+}
+
