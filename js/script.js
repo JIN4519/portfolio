@@ -567,7 +567,7 @@ function initPortfolioModals() {
                 <h2>멍냥상회 AI를 이용한 영상</h2>
                 <div class="media-frame">
                     <video controls>
-                        <source src="/images/mn_movie.mp4" type="video/mp4">
+                        <source src="https://drive.google.com/file/d/1RFmO6BCeokcfsDyiRBYQ0PYRFxUPBuR2/view?usp=sharing" type="video/mp4">
                         브라우저가 동영상을 지원하지 않습니다.
                     </video>
                 </div>
