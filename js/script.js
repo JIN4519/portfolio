@@ -536,7 +536,7 @@ function initPortfolioModals() {
             title: 'NEXTVION 기획서 / 개인 프로젝트',
             content: `
                 <h2>NEXTVION 기획서 / 개인 프로젝트</h2>
-                <img src="/images/vion_p1.png" alt="NEXTVION 기획서" style="width:100%; height:auto;" />
+                <img src="images/vion_p1.png" alt="NEXTVION 기획서" style="width:100%; height:auto;" />
                 <div class="modal-separator"></div>
                 <p>제작기간 : 4주</p>
                 <p>기술스택 : Figma, Illustrator, Photoshop, HTML, CSS, JavaScript, Github</p>
@@ -574,7 +574,7 @@ function initPortfolioModals() {
             title: '아이보리 UX/UI Design',
             content: `
                 <h2>아이보리 기획서 / 개인 프로젝트</h2>
-                <img src="/images/aivory_p2.png" alt="아이보리 기획서" style="width:100%; height:auto;" />
+                <img src="images/aivory_p2.png" alt="아이보리 기획서" style="width:100%; height:auto;" />
                 <div class="modal-separator"></div>
                 <p>개인 프로젝트</p>
                 <p>제작기간 : 1주</p>
@@ -594,7 +594,7 @@ function initPortfolioModals() {
             title: 'SINCE EIGHTEEN UX/UI Design',
             content: `
                 <h2>SINCE EIGHTEEN 기획서</h2>
-                <img src="/images/since_p1.png" alt="since 기획서" style="width:100%; height:auto;" />
+                <img src="images/since_p1.png" alt="since 기획서" style="width:100%; height:auto;" />
                 <div class="modal-separator"></div>
                 <p>개인 프로젝트</p>
                 <p>제작기간 : 2주</p>
@@ -615,7 +615,7 @@ function initPortfolioModals() {
         'morgo-ux': {
             title: '모르고 UX/UI Design',
             content: `
-                <img src="/images/morgo_p1.png" alt="모르고 기획서" style="width:100%; height:auto;" />
+                <img src="images/morgo_p1.png" alt="모르고 기획서" style="width:100%; height:auto;" />
                     <div class="modal-separator"></div>
                     <p>개인 프로젝트</p>
                     <p>제작기간 : 1주</p>
@@ -626,7 +626,7 @@ function initPortfolioModals() {
         'aivorypersonal-ux': {
             title: 'aivory personal',
             content: `
-                <img src="/images/aivory_p3.png" alt="아이보리 기획서" style="width:100%; height:auto;" />
+                <img src="images/aivory_p3.png" alt="아이보리 기획서" style="width:100%; height:auto;" />
                 <div class="modal-separator"></div>
                 <p>개인 프로젝트</p>
                 <p>제작기간 : 1주</p>
