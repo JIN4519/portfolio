@@ -321,7 +321,7 @@ body {
 }
 
 .services {
-    padding: 20px 0;
+    padding: 60px 0;
     background-image: url('../images/branding_bg.png');
 }
 
@@ -368,7 +368,7 @@ body {
 }
 
 .portfolio {
-    padding: 20px 0 0 0;
+    padding: 60px 0 0 0;
     background-image: url('../images/bg5.png');
 }
 
@@ -392,7 +392,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
 }
 
 .portfolio-item {
@@ -474,7 +474,7 @@ body {
 }
 
 .awards {
-    padding: 100px 0;
+    padding: 60px 0;
     background: var(--light-bg);
 }
 
@@ -646,7 +646,7 @@ body {
 }
 
 .faqs {
-    padding: 100px 0;
+    padding: 40px 0;
     background: var(--light-bg);
 }
 
@@ -714,7 +714,7 @@ body {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px;
+    max-height: 220px;
 }
 
 .faq-answer p {
@@ -724,7 +724,7 @@ body {
 }
 
 .contact {
-    padding: 20px 0;
+    padding: 40px 0;
     background: var(--dark-bg);
     text-align: center;
     color: var(--white);
