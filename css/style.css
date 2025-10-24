@@ -921,7 +921,10 @@ footer {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.28s ease;
-        padding: 0 20px; 
+        padding: 0 20px;
+        -webkit-overflow-scrolling: touch; /* enable momentum scrolling on iOS */
+        touch-action: pan-y; /* allow vertical pan inside the element */
+        overscroll-behavior: contain; /* prevent scroll chaining to parent */
     }
 
     .faq-item.active .faq-answer {
@@ -929,6 +932,13 @@ footer {
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         padding: 10px 20px 20px;
+        touch-action: pan-y;
+        overscroll-behavior: contain;
+    }
+
+    /* allow the open item to show internal scrolling properly */
+    .faq-item.active {
+        overflow: visible;
     }
 }
 
