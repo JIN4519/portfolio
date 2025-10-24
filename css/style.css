@@ -714,7 +714,7 @@ body {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 240px;
+    max-height: 200px;
 }
 
 .faq-answer p {
@@ -898,9 +898,37 @@ footer {
         font-size: 1rem;
         gap: 20px;
     }
+
+    .capabilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .capability-item img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .capability-item span {
+        font-size: 0.85rem;
+    }
+    
     
     section {
         padding: 60px 0 !important;
+    }
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.28s ease;
+        padding: 0 20px; 
+    }
+
+    .faq-item.active .faq-answer {
+        max-height: 50vh;             
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 20px 20px;
     }
 }
 
