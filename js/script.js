@@ -632,7 +632,8 @@ function initPortfolioModals() {
                 <p>제작기간 : 1주</p>
                 <p>기술스택 : PPT참고</p>        
             `
-        },
+        }
+        
         
     };
 
