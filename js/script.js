@@ -559,7 +559,7 @@ function initPortfolioModals() {
             content: `
                 <h2>멍냥상회 피그마 구현</h2>
                 <div class="media-frame">
-                    <iframe style="border: 0; width:100%; height:450px;" src="https://embed.figma.com/proto/zoeFkosJz3FdOtKf57VzKW/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EC%A0%9C%EC%9E%91?page-id=135%3A8600&node-id=135-9203&viewport=-76%2C123%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=135%3A9203&embed-host=share" allowfullscreen></iframe>
+                    <iframe style="border: 0; width:100%; height:450px;" src="https://embed.figma.com/proto/OSLrvIpkOUrvTZHXYZl1jB/%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A9%8D%EB%83%A5%EC%83%81%ED%9A%8C-?page-id=0%3A1&node-id=1-655&viewport=393%2C3%2C0.25&scaling=scale-down&content-scaling=fixed&embed-host=share" allowfullscreen></iframe>
                 </div>
 
                 <div class="modal-separator"></div>
@@ -586,7 +586,7 @@ function initPortfolioModals() {
             content: `
                 <h2>아이보리 피그마 구현</h2>
                 <div class="media-frame">
-                    <iframe style="border: 0; width:100%; height:950px;" src="https://embed.figma.com/proto/59YPP7a7K5T0I7X1KBx1px/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B82--%EC%95%84%EC%9D%B4%EB%B3%B4%EB%A6%AC-?page-id=0%3A1&node-id=1-1094&viewport=-30%2C1%2C0.3&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A1071&embed-host=share" allowfullscreen></iframe>
+                    <iframe style="border: 0; width:100%; height:950px;" src="https://embed.figma.com/proto/59YPP7a7K5T0I7X1KBx1px/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B82--%EC%95%84%EC%9D%B4%EB%B3%B4%EB%A6%AC-?page-id=0%3A1&node-id=1-1094&viewport=-930%2C-936%2C1.02&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=1%3A1071&embed-host=share" allowfullscreen></iframe>
                 </div>
             `
         },
@@ -606,7 +606,7 @@ function initPortfolioModals() {
             content: `
                 <h2>SINCE EIGHTEEN 피그마 구현</h2>
                 <div class="media-frame">
-                    <iframe style="border: 0; width:100%; height:950px;" src="https://embed.figma.com/proto/KsstKbzPZEtUfoLdWQQQMM/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B83_Since-18?page-id=0%3A1&node-id=1-28&viewport=146%2C-495%2C0.44&scaling=min-zoom&content-scaling=fixed&embed-host=share" allowfullscreen></iframe>
+                    <iframe style="border: 0; width:100%; height:950px;" src="https://embed.figma.com/proto/KsstKbzPZEtUfoLdWQQQMM/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B83_Since-18?page-id=0%3A1&node-id=1-28&viewport=351%2C49%2C0.21&scaling=scale-down&content-scaling=fixed&embed-host=share" allowfullscreen></iframe>
                 </div>
                 <p>확대해서 확인해보세요.</p>
                 <p>재생버튼을 누르면 동영상이 재생됩니다.</p>
