@@ -595,9 +595,11 @@ function initPortfolioModals() {
             content: `
                 <h2>SINCE EIGHTEEN 기획서</h2>
                 <img src="images/since_p1.png" alt="since 기획서" style="width:100%; height:auto;" />
-                <div class="modal-separator"></div>
+                <div class="modal-separator">
+                </div>
                 <p>개인 프로젝트</p>
                 <p>제작기간 : 2주</p>
+
                 <p>기술스택 : Figma, Illustrator, Photoshop, After Effects, Premiere Pro</p>
             `
         },
@@ -615,6 +617,7 @@ function initPortfolioModals() {
         'morgo-ux': {
             title: '모르고 UX/UI Design',
             content: `
+                <h2>모르고 기획서 / 개인 프로젝트</h2>
                 <img src="images/morgo_p1.png" alt="모르고 기획서" style="width:100%; height:auto;" />
                     <div class="modal-separator"></div>
                     <p>개인 프로젝트</p>
@@ -626,6 +629,7 @@ function initPortfolioModals() {
         'aivorypersonal-ux': {
             title: 'aivory personal',
             content: `
+                <h2>아이보리 기획서 / 개인 프로젝트</h2>
                 <img src="images/aivory_p3.png" alt="아이보리 기획서" style="width:100%; height:auto;" />
                 <div class="modal-separator"></div>
                 <p>개인 프로젝트</p>
