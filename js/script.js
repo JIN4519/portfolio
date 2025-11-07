@@ -559,7 +559,7 @@ function initPortfolioModals() {
             content: `
                 <h2>멍냥상회 피그마 구현</h2>
                 <div class="media-frame">
-                    <iframe style="border: 0; width:100%; height:450px;" src="https://embed.figma.com/proto/OSLrvIpkOUrvTZHXYZl1jB/%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A9%8D%EB%83%A5%EC%83%81%ED%9A%8C-?page-id=0%3A1&node-id=1-1598&p=f&viewport=394%2C25%2C0.22&scaling=min-zoom&content-scaling=fixed&embed-host=share" allowfullscreen></iframe>
+                    <iframe style="border: 0; width:100%; height:450px;" src="https://embed.figma.com/proto/OSLrvIpkOUrvTZHXYZl1jB/%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A9%8D%EB%83%A5%EC%83%81%ED%9A%8C-?page-id=0%3A1&node-id=1-655&viewport=394%2C73%2C0.22&scaling=min-zoom&content-scaling=fixed&embed-host=share" allowfullscreen></iframe>
                 </div>
 
                 <div class="modal-separator"></div>
@@ -676,5 +676,6 @@ function initPortfolioModals() {
         }
     });
 }
+
 
 
